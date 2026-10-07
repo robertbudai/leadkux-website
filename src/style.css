@@ -3524,3 +3524,29 @@ html {
 
 
 
+
+/* =========================================================
+   LEADKUX HERO FINAL DESKTOP FIX
+   Keep the proven single-column hero composition on desktop.
+   ========================================================= */
+
+@media (min-width: 1281px) {
+
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 46px !important;
+  }
+
+  .hero-copy {
+    padding-top: 0 !important;
+    max-width: 760px;
+  }
+
+  .hero-product-visual {
+    width: min(760px, 52vw) !important;
+    max-width: 760px !important;
+    margin: 0 !important;
+    justify-self: start !important;
+  }
+
+}
