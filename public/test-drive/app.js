@@ -365,12 +365,12 @@ function restoreSelectionScreen() {
     interactionLabel.textContent =
         "ENTER A SYNTHETIC LEAD MESSAGE";
     interactionButton.innerHTML =
-        'PROCESS LEAD <span>â†’</span>';
+        'PROCESS LEAD <span>&rarr;</span>';
     resetButton.classList.add("hidden");
 
     startButton.disabled = false;
     startButton.innerHTML =
-        'START TEST DRIVE <span>â†’</span>';
+        'START TEST DRIVE <span>&rarr;</span>';
 
     selectedName.textContent =
         scenarioNames[selectedScenario];
@@ -419,7 +419,7 @@ startButton.addEventListener("click", async () => {
 
         startButton.disabled = false;
         startButton.innerHTML =
-            'TRY AGAIN <span>â†’</span>';
+            'TRY AGAIN <span>&rarr;</span>';
 
         alert(
             "The LeadKux Test Drive could not be started."
@@ -502,7 +502,7 @@ interactionButton.addEventListener("click", async () => {
             interactionMode = "answer";
 
             interactionButton.innerHTML =
-                'SUBMIT ANSWER <span>â†’</span>';
+                'SUBMIT ANSWER <span>&rarr;</span>';
         }
 
     } catch (error) {
@@ -518,8 +518,8 @@ interactionButton.addEventListener("click", async () => {
         if (!interactionButton.classList.contains("hidden")) {
             interactionButton.innerHTML =
                 interactionMode === "lead"
-                    ? 'PROCESS LEAD <span>â†’</span>'
-                    : 'SUBMIT ANSWER <span>â†’</span>';
+                    ? 'PROCESS LEAD <span>&rarr;</span>'
+                    : 'SUBMIT ANSWER <span>&rarr;</span>';
         }
     }
 });
@@ -553,7 +553,7 @@ prepareFollowupButton.addEventListener("click", async () => {
 
         prepareFollowupButton.disabled = false;
         prepareFollowupButton.innerHTML =
-            'PREPARE FOLLOW-UP <span>â†’</span>';
+            'PREPARE FOLLOW-UP <span>&rarr;</span>';
     }
 });
 
@@ -612,6 +612,17 @@ sendResponseButton.addEventListener("click", async () => {
 
             interactionPanel.classList.add("hidden");
             followupPanel.classList.add("hidden");
+
+            interactionInput.value = "";
+            interactionResult.classList.add("hidden");
+            interactionIntent.textContent = "";
+            interactionQuestion.textContent = "";
+
+            followupMessageCard.classList.add("hidden");
+            followupResponseArea.classList.add("hidden");
+            followupResponse.value = "";
+
+            resetButton.classList.remove("hidden");
         } else {
             stateKicker.textContent = "FOLLOW-UP";
             stateHeadline.textContent =
