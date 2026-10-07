@@ -3248,7 +3248,7 @@ html {
    RESPONSIVE TECH INDEX
    ========================================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
 
   .technical-mini-links {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3331,11 +3331,22 @@ html {
 
 .hero-grid {
   grid-template-columns:
-    minmax(0, 0.88fr)
-    minmax(520px, 1.12fr);
+    minmax(440px, 0.92fr)
+    minmax(0, 1.08fr);
 
-  gap: clamp(24px, 3vw, 52px);
+  gap: clamp(32px, 4vw, 64px);
   align-items: start;
+}
+
+.hero-copy {
+  min-width: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-product-visual {
+  justify-self: end;
+  min-width: 0;
 }
 
 .hero-copy {
@@ -3450,7 +3461,7 @@ html {
 
 /* ---------- TABLET ---------- */
 
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
 
   .hero-grid {
     grid-template-columns: 1fr;
@@ -3510,5 +3521,6 @@ html {
   }
 
 }
+
 
 
