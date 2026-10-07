@@ -1,0 +1,389 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>LeadKux Test Drive</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+<div class="background-grid"></div>
+<div class="glow glow-one"></div>
+<div class="glow glow-two"></div>
+
+<main class="shell">
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-mark">LK</div>
+
+            <div>
+                <div class="brand-name">LeadKux</div>
+                <div class="brand-subtitle">Interactive Test Drive</div>
+            </div>
+        </div>
+
+        <div class="sandbox-badge">
+            <span class="status-dot"></span>
+            ISOLATED SANDBOX
+        </div>
+    </header>
+
+
+    <section class="hero">
+
+        <div class="eyebrow">
+            INTERACTIVE PRODUCT DEMONSTRATION
+        </div>
+
+        <h1>
+            See what happens when
+            <span>a lead goes unanswered.</span>
+        </h1>
+
+        <p class="hero-copy">
+            Run a synthetic lead through the LeadKux recovery workflow.
+            No signup. No customer data. No real messages are sent.
+        </p>
+
+        <div class="trust-row">
+            <span>● Synthetic data only</span>
+            <span>● 30-minute session</span>
+            <span>● Human control retained</span>
+        </div>
+
+    </section>
+
+
+    <section class="demo-panel">
+
+        <div class="panel-heading">
+            <div>
+                <div class="step-label">STEP 01</div>
+                <h2>Choose a demo business</h2>
+            </div>
+
+            <div class="panel-status">
+                READY
+            </div>
+        </div>
+
+
+        <div class="scenario-grid">
+
+            <button
+                class="scenario-card selected"
+                type="button"
+                data-scenario="solar"
+            >
+                <div class="scenario-icon">☀</div>
+
+                <div class="scenario-content">
+                    <h3>Solar</h3>
+                    <p>
+                        Recover a high-intent residential solar enquiry
+                        that has gone unanswered.
+                    </p>
+                </div>
+
+                <div class="scenario-check">✓</div>
+            </button>
+
+
+            <button
+                class="scenario-card"
+                type="button"
+                data-scenario="real_estate"
+            >
+                <div class="scenario-icon">⌂</div>
+
+                <div class="scenario-content">
+                    <h3>Real Estate</h3>
+                    <p>
+                        Follow a property enquiry from missed opportunity
+                        to sales handoff.
+                    </p>
+                </div>
+
+                <div class="scenario-check">✓</div>
+            </button>
+
+
+            <button
+                class="scenario-card"
+                type="button"
+                data-scenario="home_services"
+            >
+                <div class="scenario-icon">⚙</div>
+
+                <div class="scenario-content">
+                    <h3>Home Services</h3>
+                    <p>
+                        See how an unanswered service request can be
+                        returned to an active workflow.
+                    </p>
+                </div>
+
+                <div class="scenario-check">✓</div>
+            </button>
+
+        </div>
+
+
+        <div class="launch-zone">
+
+            <div class="launch-info">
+                <span class="launch-label">SELECTED SCENARIO</span>
+                <strong id="selected-name">Solar</strong>
+            </div>
+
+            <button id="start-button" class="primary-button" type="button">
+                START TEST DRIVE
+                <span>→</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section id="drive-screen" class="drive-screen hidden">
+
+        <div class="drive-top">
+
+            <div>
+                <div class="step-label" id="drive-step-label">
+                    LIVE TEST DRIVE
+                </div>
+
+                <h2 id="drive-title">
+                    Missed lead detected
+                </h2>
+            </div>
+
+            <div class="drive-live-badge">
+                <span class="status-dot"></span>
+                SANDBOX ACTIVE
+            </div>
+
+        </div>
+
+
+        <div class="drive-layout">
+
+            <aside class="lead-card">
+
+                <div class="lead-card-label">
+                    SYNTHETIC LEAD
+                </div>
+
+                <div class="lead-avatar" id="lead-avatar">
+                    L
+                </div>
+
+                <h3 id="lead-name">Lead</h3>
+
+                <div class="lead-business" id="lead-business">
+                    Demo Business
+                </div>
+
+                <div class="lead-data">
+
+                    <div>
+                        <span>Source</span>
+                        <strong id="lead-source">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Interest</span>
+                        <strong id="lead-interest">—</strong>
+                    </div>
+
+                    <div>
+                        <span>Status</span>
+                        <strong id="lead-status">—</strong>
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+            <div class="drive-main">
+
+                <div class="state-kicker" id="state-kicker">
+                    DETECTED
+                </div>
+
+                <h3 id="state-headline">
+                    Missed lead detected
+                </h3>
+
+                <p id="state-explanation">
+                    LeadKux has identified an unanswered opportunity.
+                </p>
+
+
+                <div class="problem-box">
+
+                    <span id="problem-label">
+                        ORIGINAL SIGNAL
+                    </span>
+
+                    <strong id="lead-problem">
+                        Waiting for lead context...
+                    </strong>
+
+                </div>
+
+
+                <div class="outcome-box">
+
+                    <span>CURRENT OUTCOME</span>
+
+                    <strong id="state-outcome">
+                        Recovery workflow ready
+                    </strong>
+
+                </div>
+
+
+                <div class="drive-actions">
+
+                    <div class="state-indicator">
+                        <span>ENGINE STATE</span>
+                        <strong id="engine-state">
+                            DEMO_LEAD_CREATED
+                        </strong>
+                    </div>
+
+                    <button
+                        id="continue-button"
+                        class="primary-button"
+                        type="button"
+                    >
+                        CONTINUE
+                        <span>→</span>
+                    </button>
+
+                    <button
+                        id="reset-button"
+                        class="secondary-button hidden"
+                        type="button"
+                    >
+                        TRY ANOTHER SCENARIO
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="drive-progress">
+
+            <div class="progress-item active" data-state="DEMO_LEAD_CREATED">
+                <span>01</span>
+                <strong>Detected</strong>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-item" data-state="QUALIFICATION">
+                <span>02</span>
+                <strong>Qualification</strong>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-item" data-state="FOLLOW_UP">
+                <span>03</span>
+                <strong>Follow-up</strong>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-item" data-state="HUMAN_HANDOFF">
+                <span>04</span>
+                <strong>Human Handoff</strong>
+            </div>
+
+            <div class="progress-line"></div>
+
+            <div class="progress-item" data-state="RESULT">
+                <span>05</span>
+                <strong>Result</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="workflow-preview">
+
+        <div class="workflow-title">
+            WHAT YOU'LL SEE
+        </div>
+
+        <div class="workflow">
+
+            <div class="workflow-step">
+                <span>01</span>
+                <strong>Missed Lead</strong>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="workflow-step">
+                <span>02</span>
+                <strong>Qualification</strong>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="workflow-step">
+                <span>03</span>
+                <strong>Follow-up</strong>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="workflow-step">
+                <span>04</span>
+                <strong>Human Handoff</strong>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="workflow-step">
+                <span>05</span>
+                <strong>Result</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        <span>
+            LeadKux Test Drive · Synthetic demonstration environment
+        </span>
+
+        <span>
+            No production customer data is used.
+        </span>
+    </footer>
+
+</main>
+
+<script src="./app.js"></script>
+
+</body>
+</html>
+

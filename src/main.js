@@ -1,4 +1,4 @@
-﻿import './style.css'
+import './style.css'
 import leadkuxProductBox from './assets/leadkux-product-box.jpg'
 
 const layers = [
@@ -87,6 +87,9 @@ document.querySelector('#app').innerHTML = `
             <div class="hero-actions">
               <a class="button button-primary" href="#contact">
                 Get early access <span>→</span>
+              </a>
+              <a class="button button-secondary" href="/test-drive/">
+                TRY NOW <span>→</span>
               </a>
 
               <a class="button button-secondary" href="#architecture">
@@ -1211,11 +1214,3 @@ document.querySelectorAll('.main-nav a').forEach((link) => {
     nav.classList.remove('is-open')
   })
 })
-
-
-
-
-
-
-
-
