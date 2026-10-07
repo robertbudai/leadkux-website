@@ -3344,10 +3344,6 @@ html {
   z-index: 2;
 }
 
-.hero-product-visual {
-  justify-self: end;
-  min-width: 0;
-}
 
 .hero-copy {
   padding-top: 18px;
@@ -3357,8 +3353,9 @@ html {
   position: relative;
   isolation: isolate;
 
-  width: min(760px, 52vw);
-  max-width: 100%;
+  width: 100%;
+  max-width: 760px;
+  justify-self: end;
 
   margin: -28px 0 0 auto;
   padding: 0;
@@ -3473,7 +3470,9 @@ html {
   }
 
   .hero-product-visual {
-    width: min(720px, 92vw);
+    width: min(760px, 92vw);
+    max-width: 760px;
+    justify-self: center;
     margin: 0 auto;
   }
 
@@ -3521,6 +3520,7 @@ html {
   }
 
 }
+
 
 
 
