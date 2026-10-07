@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -260,15 +260,82 @@
                         </strong>
                     </div>
 
-                    <button
-                        id="continue-button"
-                        class="primary-button"
-                        type="button"
-                    >
-                        CONTINUE
-                        <span>→</span>
-                    </button>
+                    <div id="interaction-panel">
+                        <label id="interaction-label" for="interaction-input">
+                            ENTER A SYNTHETIC LEAD MESSAGE
+                        </label>
 
+                        <textarea
+                            id="interaction-input"
+                            maxlength="1200"
+                            rows="4"
+                            placeholder="Example: Hi, I'm interested in solar panels. My electricity bill is about 180 EUR per month."
+                        ></textarea>
+
+                        <button
+                            id="interaction-button"
+                            class="primary-button"
+                            type="button"
+                        >
+                            PROCESS LEAD
+                            <span>→</span>
+                        </button>
+
+                        <div id="interaction-result" class="hidden">
+                            <strong id="interaction-intent"></strong>
+                            <p id="interaction-question"></p>
+                        </div>
+                    </div>
+
+                    <div id="followup-panel" class="hidden">
+
+                        <div id="followup-message-card" class="hidden">
+                            <span>LEADKUX FOLLOW-UP</span>
+                            <p id="followup-message"></p>
+                        </div>
+
+                        <div id="followup-response-area" class="hidden">
+                            <label for="followup-response">
+                                SIMULATED LEAD RESPONSE
+                            </label>
+
+                            <textarea
+                                id="followup-response"
+                                maxlength="1200"
+                                rows="4"
+                                placeholder="Example: Yes, please contact me."
+                            ></textarea>
+
+                            <div>
+                                <button
+                                    id="send-response-button"
+                                    class="primary-button"
+                                    type="button"
+                                >
+                                    SEND RESPONSE
+                                    <span>→</span>
+                                </button>
+
+                                <button
+                                    id="no-response-button"
+                                    class="secondary-button"
+                                    type="button"
+                                >
+                                    NO RESPONSE
+                                </button>
+                            </div>
+                        </div>
+
+                        <button
+                            id="prepare-followup-button"
+                            class="primary-button"
+                            type="button"
+                        >
+                            PREPARE FOLLOW-UP
+                            <span>→</span>
+                        </button>
+
+                    </div>
                     <button
                         id="reset-button"
                         class="secondary-button hidden"

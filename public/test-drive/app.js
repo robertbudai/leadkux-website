@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 const API_BASE = "https://leadkux-sandbox.work-robert-budai.workers.dev";
 
@@ -10,7 +10,21 @@ const demoPanel = document.querySelector(".demo-panel");
 const workflowPreview = document.querySelector(".workflow-preview");
 const driveScreen = document.getElementById("drive-screen");
 
-const continueButton = document.getElementById("continue-button");
+const interactionPanel = document.getElementById("interaction-panel");
+const interactionLabel = document.getElementById("interaction-label");
+const interactionInput = document.getElementById("interaction-input");
+const interactionButton = document.getElementById("interaction-button");
+const interactionResult = document.getElementById("interaction-result");
+const interactionIntent = document.getElementById("interaction-intent");
+const interactionQuestion = document.getElementById("interaction-question");
+const followupPanel = document.getElementById("followup-panel");
+const prepareFollowupButton = document.getElementById("prepare-followup-button");
+const followupMessageCard = document.getElementById("followup-message-card");
+const followupMessage = document.getElementById("followup-message");
+const followupResponseArea = document.getElementById("followup-response-area");
+const followupResponse = document.getElementById("followup-response");
+const sendResponseButton = document.getElementById("send-response-button");
+const noResponseButton = document.getElementById("no-response-button");
 const resetButton = document.getElementById("reset-button");
 
 const driveTitle = document.getElementById("drive-title");
@@ -47,6 +61,7 @@ const stateOrder = [
 let selectedScenario = "solar";
 let currentSession = null;
 let currentDemo = null;
+let interactionMode = "lead";
 
 
 cards.forEach((card) => {
@@ -128,6 +143,119 @@ async function advanceDemo() {
 }
 
 
+async function submitLeadMessage(message) {
+    return apiRequest(
+        `/sandbox/session/${currentSession.session_id}/lead-input`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Sandbox-Owner":
+                    currentSession.owner_token
+            },
+            body: JSON.stringify({
+                scenario: selectedScenario,
+                message: message
+            })
+        }
+    );
+}
+
+
+async function submitQualificationAnswer(answer) {
+    return apiRequest(
+        `/sandbox/session/${currentSession.session_id}/answer`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Sandbox-Owner":
+                    currentSession.owner_token
+            },
+            body: JSON.stringify({
+                answer: answer
+            })
+        }
+    );
+}
+
+async function prepareFollowUp() {
+    return apiRequest(
+        `/sandbox/session/${currentSession.session_id}/follow-up`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Sandbox-Owner": currentSession.owner_token
+            },
+            body: JSON.stringify({})
+        }
+    );
+}
+
+
+async function sendLeadResponse(response) {
+    return apiRequest(
+        `/sandbox/session/${currentSession.session_id}/lead-response`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Sandbox-Owner": currentSession.owner_token
+            },
+            body: JSON.stringify({
+                response: response
+            })
+        }
+    );
+}
+
+
+async function sendNoResponse() {
+    return apiRequest(
+        `/sandbox/session/${currentSession.session_id}/lead-response`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Sandbox-Owner": currentSession.owner_token
+            },
+            body: JSON.stringify({
+                no_response: true
+            })
+        }
+    );
+}
+
+async function prepareHumanHandoff() {
+    return apiRequest(
+        `/sandbox/session/${currentSession.session_id}/handoff`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Sandbox-Owner": currentSession.owner_token
+            },
+            body: JSON.stringify({})
+        }
+    );
+}
+
+
+async function completeInteractiveWorkflow() {
+    return apiRequest(
+        `/sandbox/session/${currentSession.session_id}/complete`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Sandbox-Owner": currentSession.owner_token
+            },
+            body: JSON.stringify({})
+        }
+    );
+}
+
 async function resetDemo() {
     return apiRequest(
         `/sandbox/session/${currentSession.session_id}/reset`,
@@ -205,7 +333,7 @@ function renderEngineEvent(event) {
     updateProgress(event.state);
 
     if (event.state === "RESULT") {
-        continueButton.classList.add("hidden");
+        interactionPanel.classList.add("hidden");
         resetButton.classList.remove("hidden");
     }
 }
@@ -230,12 +358,19 @@ function restoreSelectionScreen() {
     demoPanel.classList.remove("hidden");
     workflowPreview.classList.remove("hidden");
 
-    continueButton.classList.remove("hidden");
+    interactionPanel.classList.remove("hidden");
+    interactionResult.classList.add("hidden");
+    interactionInput.value = "";
+    interactionMode = "lead";
+    interactionLabel.textContent =
+        "ENTER A SYNTHETIC LEAD MESSAGE";
+    interactionButton.innerHTML =
+        'PROCESS LEAD <span>â†’</span>';
     resetButton.classList.add("hidden");
 
     startButton.disabled = false;
     startButton.innerHTML =
-        'START TEST DRIVE <span>→</span>';
+        'START TEST DRIVE <span>â†’</span>';
 
     selectedName.textContent =
         scenarioNames[selectedScenario];
@@ -284,7 +419,7 @@ startButton.addEventListener("click", async () => {
 
         startButton.disabled = false;
         startButton.innerHTML =
-            'TRY AGAIN <span>→</span>';
+            'TRY AGAIN <span>â†’</span>';
 
         alert(
             "The LeadKux Test Drive could not be started."
@@ -293,36 +428,232 @@ startButton.addEventListener("click", async () => {
 });
 
 
-continueButton.addEventListener("click", async () => {
+interactionButton.addEventListener("click", async () => {
 
-    continueButton.disabled = true;
-    continueButton.textContent = "PROCESSING...";
+    const value = interactionInput.value.trim();
+
+    if (!value) {
+        alert("Enter a synthetic lead message first.");
+        return;
+    }
+
+    interactionButton.disabled = true;
+    interactionButton.textContent = "PROCESSING...";
 
     try {
-        const event = await advanceDemo();
+        let result;
 
-        renderEngineEvent(event);
+        if (interactionMode === "lead") {
+            result = await submitLeadMessage(value);
+        } else {
+            result = await submitQualificationAnswer(value);
+        }
 
-        if (event.state !== "RESULT") {
-            continueButton.innerHTML =
-                'CONTINUE <span>→</span>';
+        interactionResult.classList.remove("hidden");
+        interactionIntent.textContent =
+            `Detected intent: ${result.intent}`;
+
+        engineState.textContent = result.state;
+        updateProgress(result.state);
+
+        if (result.qualified) {
+            stateKicker.textContent = "QUALIFIED";
+            stateHeadline.textContent =
+                "Lead qualification completed";
+
+            stateExplanation.textContent =
+                "LeadKux processed the visitor's input and collected the required qualification context.";
+
+            stateOutcome.textContent =
+                "Lead context ready for follow-up";
+
+            interactionQuestion.textContent =
+                "Qualification complete. The lead is ready for the next workflow stage.";
+
+            interactionInput.classList.add("hidden");
+            interactionButton.classList.add("hidden");
+
+            followupPanel.classList.remove("hidden");
+            prepareFollowupButton.classList.remove("hidden");
+            followupMessageCard.classList.add("hidden");
+            followupResponseArea.classList.add("hidden");
+
+        } else {
+            stateKicker.textContent = "QUALIFYING";
+            stateHeadline.textContent =
+                "LeadKux needs more information";
+
+            stateExplanation.textContent =
+                "The submitted lead was processed, but required qualification context is still missing.";
+
+            stateOutcome.textContent =
+                "Waiting for qualification response";
+
+            interactionQuestion.textContent =
+                result.qualification_question;
+
+            interactionLabel.textContent =
+                "REPLY TO LEADKUX";
+
+            interactionInput.value = "";
+            interactionInput.placeholder =
+                result.qualification_question;
+
+            interactionMode = "answer";
+
+            interactionButton.innerHTML =
+                'SUBMIT ANSWER <span>â†’</span>';
         }
 
     } catch (error) {
         console.error(error);
 
         alert(
-            "The sandbox could not advance the workflow."
+            "LeadKux could not process this interaction."
         );
 
-        continueButton.innerHTML =
-            'TRY AGAIN <span>→</span>';
-
     } finally {
-        continueButton.disabled = false;
+        interactionButton.disabled = false;
+
+        if (!interactionButton.classList.contains("hidden")) {
+            interactionButton.innerHTML =
+                interactionMode === "lead"
+                    ? 'PROCESS LEAD <span>â†’</span>'
+                    : 'SUBMIT ANSWER <span>â†’</span>';
+        }
     }
 });
 
+prepareFollowupButton.addEventListener("click", async () => {
+    prepareFollowupButton.disabled = true;
+    prepareFollowupButton.textContent = "PREPARING...";
+
+    try {
+        const result = await prepareFollowUp();
+
+        engineState.textContent = result.state;
+        updateProgress(result.state);
+
+        stateKicker.textContent = "FOLLOW-UP";
+        stateHeadline.textContent = "Follow-up prepared";
+        stateExplanation.textContent =
+            "LeadKux used the collected qualification context to prepare the next customer interaction.";
+        stateOutcome.textContent =
+            "Waiting for simulated lead response";
+
+        followupMessage.textContent = result.message;
+
+        prepareFollowupButton.classList.add("hidden");
+        followupMessageCard.classList.remove("hidden");
+        followupResponseArea.classList.remove("hidden");
+
+    } catch (error) {
+        console.error(error);
+        alert("LeadKux could not prepare the follow-up.");
+
+        prepareFollowupButton.disabled = false;
+        prepareFollowupButton.innerHTML =
+            'PREPARE FOLLOW-UP <span>â†’</span>';
+    }
+});
+
+
+sendResponseButton.addEventListener("click", async () => {
+    const response = followupResponse.value.trim();
+
+    if (!response) {
+        alert("Enter a simulated lead response.");
+        return;
+    }
+
+    sendResponseButton.disabled = true;
+
+    try {
+        const result = await sendLeadResponse(response);
+
+        engineState.textContent = result.state;
+        updateProgress(result.state);
+
+        if (result.handoff_ready) {
+            stateKicker.textContent = "HUMAN HANDOFF";
+            stateHeadline.textContent =
+                "Preparing human handoff";
+            stateExplanation.textContent =
+                "LeadKux is packaging the collected qualification context for human review.";
+            stateOutcome.textContent =
+                "No customer action is executed automatically";
+
+            followupResponseArea.classList.add("hidden");
+
+            const handoff = await prepareHumanHandoff();
+
+            engineState.textContent = handoff.state;
+            updateProgress(handoff.state);
+
+            stateHeadline.textContent =
+                "Lead ready for human review";
+            stateExplanation.textContent = handoff.summary;
+            stateOutcome.textContent =
+                handoff.recommended_action;
+
+            const completed =
+                await completeInteractiveWorkflow();
+
+            engineState.textContent = completed.state;
+            updateProgress(completed.state);
+
+            stateKicker.textContent = "RESULT";
+            stateHeadline.textContent =
+                "Interactive workflow completed";
+            stateExplanation.textContent =
+                "LeadKux completed the synthetic lead-recovery workflow and prepared the qualified context for human action.";
+            stateOutcome.textContent =
+                completed.outcome;
+
+            interactionPanel.classList.add("hidden");
+            followupPanel.classList.add("hidden");
+        } else {
+            stateKicker.textContent = "FOLLOW-UP";
+            stateHeadline.textContent =
+                "Further follow-up required";
+            stateExplanation.textContent = result.summary;
+            stateOutcome.textContent = result.next_action;
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("LeadKux could not process the response.");
+
+    } finally {
+        sendResponseButton.disabled = false;
+    }
+});
+
+
+noResponseButton.addEventListener("click", async () => {
+    noResponseButton.disabled = true;
+
+    try {
+        const result = await sendNoResponse();
+
+        engineState.textContent = result.state;
+        updateProgress(result.state);
+
+        stateKicker.textContent = "FOLLOW-UP";
+        stateHeadline.textContent =
+            "No response received";
+        stateExplanation.textContent = result.summary;
+        stateOutcome.textContent =
+            "Follow-up remains required";
+
+    } catch (error) {
+        console.error(error);
+        alert("LeadKux could not process the no-response path.");
+
+    } finally {
+        noResponseButton.disabled = false;
+    }
+});
 
 resetButton.addEventListener("click", async () => {
 
