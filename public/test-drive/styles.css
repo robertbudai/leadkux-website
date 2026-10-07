@@ -1242,3 +1242,9 @@ footer {
     }
 }
 
+
+/* RESULT / workflow visibility invariant */
+.drive-actions #interaction-panel.hidden,
+.drive-actions #followup-panel.hidden {
+    display: none !important;
+}
