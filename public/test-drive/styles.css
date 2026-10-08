@@ -1248,3 +1248,393 @@ footer {
 .drive-actions #followup-panel.hidden {
     display: none !important;
 }
+
+/* ==========================================================
+   LEADKUX TEST DRIVE — UI POLISH 01
+   Presentation only. No workflow behaviour.
+   ========================================================== */
+
+/* --- Scenario selection --- */
+
+.demo-panel {
+    border-color: rgba(255,255,255,0.11);
+    box-shadow:
+        0 28px 80px rgba(0,0,0,0.30),
+        inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+.scenario-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 154px;
+    border: 1px solid rgba(255,255,255,0.09);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.045),
+            rgba(255,255,255,0.018)
+        );
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        background 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.scenario-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow: 0 18px 38px rgba(0,0,0,0.24);
+}
+
+.scenario-card.selected {
+    border-color: rgba(255,122,24,0.62);
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(255,122,24,0.15),
+            transparent 46%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,122,24,0.07),
+            rgba(255,255,255,0.018)
+        );
+    box-shadow:
+        0 18px 44px rgba(0,0,0,0.25),
+        inset 0 0 0 1px rgba(255,122,24,0.08);
+}
+
+.scenario-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.scenario-card.selected .scenario-icon {
+    background: rgba(255,122,24,0.11);
+    border-color: rgba(255,122,24,0.24);
+}
+
+
+/* --- Main interactive workspace --- */
+
+.drive-screen {
+    border-color: rgba(255,255,255,0.11);
+    box-shadow:
+        0 30px 90px rgba(0,0,0,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+.drive-layout {
+    gap: 36px;
+}
+
+.lead-card {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.038),
+            rgba(255,255,255,0.014)
+        );
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+.lead-avatar {
+    box-shadow:
+        0 0 0 5px rgba(255,122,24,0.055),
+        0 12px 30px rgba(0,0,0,0.22);
+}
+
+.state-kicker {
+    letter-spacing: 0.14em;
+}
+
+.outcome-box {
+    border-color: rgba(74,222,128,0.18);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(74,222,128,0.07),
+            rgba(74,222,128,0.025)
+        );
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+
+/* --- Input / interaction surface --- */
+
+.drive-actions #interaction-panel {
+    border: 1px solid rgba(255,255,255,0.10);
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            rgba(255,122,24,0.07),
+            transparent 38%
+        ),
+        rgba(255,255,255,0.018);
+    box-shadow:
+        0 22px 55px rgba(0,0,0,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+#interaction-input,
+#followup-response {
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(3,6,11,0.70);
+    box-shadow: inset 0 1px 8px rgba(0,0,0,0.18);
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background 160ms ease;
+}
+
+#interaction-input:focus,
+#followup-response:focus {
+    outline: none;
+    border-color: rgba(255,122,24,0.62);
+    background: rgba(5,8,13,0.88);
+    box-shadow:
+        0 0 0 3px rgba(255,122,24,0.08),
+        inset 0 1px 8px rgba(0,0,0,0.16);
+}
+
+
+/* --- Primary actions --- */
+
+.primary-button,
+#interaction-button,
+#followup-button,
+#lead-response-button {
+    transition:
+        transform 160ms ease,
+        box-shadow 160ms ease,
+        filter 160ms ease;
+}
+
+.primary-button:hover,
+#interaction-button:hover,
+#followup-button:hover,
+#lead-response-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+    box-shadow: 0 12px 30px rgba(255,122,24,0.20);
+}
+
+.primary-button:active,
+#interaction-button:active,
+#followup-button:active,
+#lead-response-button:active {
+    transform: translateY(0);
+}
+
+
+/* --- Workflow progress --- */
+
+.drive-progress {
+    padding-top: 8px;
+}
+
+.progress-item {
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.progress-item.active {
+    transform: translateY(-2px);
+}
+
+.progress-item.active span {
+    box-shadow:
+        0 0 0 5px rgba(255,122,24,0.07),
+        0 0 22px rgba(255,122,24,0.14);
+}
+
+.progress-item.complete span {
+    box-shadow: 0 0 18px rgba(74,222,128,0.10);
+}
+
+.progress-line {
+    opacity: 0.72;
+}
+
+
+/* --- Final result --- */
+
+.drive-screen:has(#engine-state:not(:empty)) {
+    transition: border-color 180ms ease;
+}
+
+#reset-button {
+    min-height: 48px;
+    letter-spacing: 0.045em;
+    transition:
+        border-color 160ms ease,
+        background 160ms ease,
+        transform 160ms ease;
+}
+
+#reset-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255,122,24,0.34);
+    background: rgba(255,122,24,0.055);
+}
+
+
+/* --- Accessibility / reduced motion --- */
+
+@media (prefers-reduced-motion: reduce) {
+    .scenario-card,
+    .primary-button,
+    #interaction-button,
+    #followup-button,
+    #lead-response-button,
+    #reset-button,
+    .progress-item {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+
+/* ==========================================================
+   LEADKUX TEST DRIVE — UI POLISH 02
+   Layout balance + progress readability + result emphasis
+   ========================================================== */
+
+/* --- Better desktop workspace proportions --- */
+
+@media (min-width: 1000px) {
+    .drive-layout {
+        grid-template-columns: minmax(245px, 0.72fr) minmax(0, 2.28fr);
+        gap: 38px;
+    }
+
+    .lead-card {
+        min-width: 0;
+    }
+
+    .drive-main {
+        min-width: 0;
+    }
+}
+
+
+/* --- Stronger information hierarchy --- */
+
+.lead-card-label,
+.state-indicator span,
+.outcome-box span {
+    letter-spacing: 0.13em;
+}
+
+.state-indicator {
+    padding-top: 3px;
+}
+
+.state-indicator strong {
+    letter-spacing: 0.025em;
+}
+
+
+/* --- Workflow progress readability --- */
+
+.drive-progress {
+    border-top: 1px solid rgba(255,255,255,0.075);
+}
+
+.progress-item {
+    opacity: 0.58;
+}
+
+.progress-item strong {
+    color: rgba(245,247,250,0.68);
+}
+
+.progress-item.active {
+    opacity: 1;
+}
+
+.progress-item.active strong {
+    color: #f5f7fa;
+}
+
+.progress-item.complete {
+    opacity: 0.90;
+}
+
+.progress-item.complete strong {
+    color: rgba(245,247,250,0.88);
+}
+
+.progress-line {
+    background: rgba(255,255,255,0.10);
+}
+
+.progress-item.complete + .progress-line {
+    background: rgba(74,222,128,0.24);
+}
+
+
+/* --- Stronger completed-result presentation --- */
+
+.outcome-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.outcome-box::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: rgba(74,222,128,0.70);
+    opacity: 0;
+    transition: opacity 180ms ease;
+}
+
+#reset-button:not(.hidden) {
+    margin-top: 8px;
+    border-color: rgba(255,255,255,0.13);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.045),
+            rgba(255,255,255,0.022)
+        );
+}
+
+
+/* --- Keep final screen clean and deliberate --- */
+
+.drive-actions:has(#reset-button:not(.hidden)) {
+    padding-top: 4px;
+}
+
+.drive-actions:has(#reset-button:not(.hidden)) #reset-button {
+    width: 100%;
+}
+
+
+/* --- Mobile balance --- */
+
+@media (max-width: 700px) {
+    .drive-layout {
+        gap: 22px;
+    }
+
+    .drive-progress {
+        gap: 7px;
+    }
+
+    .progress-item strong {
+        font-size: 0.68rem;
+    }
+}
+
