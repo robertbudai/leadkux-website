@@ -103,20 +103,7 @@ document.querySelector('#app').innerHTML = `
             </p>
           </div>
 
-          <div class="hero-product-visual">
-          <div class="hero-product-glow"></div>
-
-          <img
-            src="${leadkuxProductBox}"
-            alt="LeadKux Lead Recovery Engine technical product overview"
-            class="hero-product-image"
-          />
-
-          <div class="hero-product-caption">
-            <span>LEADKUX™ LRE</span>
-            <strong>Technical Product Overview</strong>
-          </div>
-        </div>
+          
 
         </div>
 
@@ -465,6 +452,13 @@ document.querySelector('#app').innerHTML = `
             from executed pytest case counts.
           </p>
         </div>
+
+        <figure class="technical-product-figure">
+          <a href="${leadkuxProductBox}" target="_blank" rel="noopener" aria-label="Open technical product overview at full size in a new tab">
+            <img src="${leadkuxProductBox}" alt="LeadKux technical inventory and architecture overview, W21 DEV, 2026-10-05" loading="lazy" />
+          </a>
+          <figcaption>Technical inventory · W21 DEV · 2026-10-05 — Click to open full-size image in a new tab.</figcaption>
+        </figure>
 
         <div id="external-delivery" class="external-validation">
 

@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   font-family:
     Inter,
     ui-sans-serif,
@@ -3578,4 +3578,40 @@ html {
   .pricing-grid { grid-template-columns: 1fr; }
   .pricing-card { padding: 26px 22px; }
   .pricing-details { padding: 20px; }
+}
+
+/* Technical overview placement */
+.hero.section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+.hero.section > .hero-grid { display: block; min-width: 0; }
+.hero.section > .hero-system { min-width: 0; margin: 0; }
+.technical-product-figure { max-width: 1000px; margin: 0 auto 48px; }
+.technical-product-figure a { display: block; border-radius: 14px; }
+.technical-product-figure a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 5px;
+}
+.technical-product-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--line-strong);
+  cursor: zoom-in;
+}
+.technical-product-figure figcaption {
+  margin-top: 12px;
+  color: var(--muted-strong);
+  font-size: 14px;
+  line-height: 1.6;
+}
+@media (max-width: 980px) {
+  .hero.section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
 }
