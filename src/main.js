@@ -54,6 +54,7 @@ document.querySelector('#app').innerHTML = `
       <nav class="main-nav" aria-label="Main navigation">
         <a href="#workflow">How it works</a>
         <a href="#product">Product</a>
+        <a href="#pricing">Pricing</a>
         <a href="#validation">Validation</a>
         <a href="#technical">Technical Details</a>
         <a href="#pilot">Pilot</a>
@@ -372,6 +373,64 @@ document.querySelector('#app').innerHTML = `
             </p>
           </article>
 
+        </div>
+      </section>
+
+      <section id="pricing" class="section section-border pricing-section" aria-labelledby="pricing-title">
+        <div class="section-heading">
+          <span class="section-kicker">PRICING &amp; PILOT</span>
+          <h2 id="pricing-title">Start with a real workflow. Decide with evidence.</h2>
+          <p>LeadKux is seeking its first live customer pilots. Evaluate the product
+            in a defined business workflow before choosing a paid subscription.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="pricing-card pricing-card-featured" aria-labelledby="pilot-price-title">
+            <span class="pricing-label">FOUNDING CUSTOMER OFFER</span>
+            <h3 id="pilot-price-title">Controlled pilot</h3>
+            <p class="pricing-amount">€0 <span>/ 30 days</span></p>
+            <p class="pricing-description">A focused evaluation, with scope and setup agreed before the pilot begins.</p>
+            <ul class="pricing-features">
+              <li>One agreed business workflow</li>
+              <li>Defined lead source and integration scope</li>
+              <li>Evaluate operational behavior and customer outcomes</li>
+              <li>No automatic paid conversion</li>
+            </ul>
+            <div class="pricing-continuation">
+              <strong>Choose to continue: €79 / month</strong>
+              <span>For the first 6 paid months, then €149 / month.
+                Paid continuation requires your separate agreement.</span>
+            </div>
+            <a class="button button-primary" href="#pilot">Apply for a pilot <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="pricing-card" aria-labelledby="full-price-title">
+            <span class="pricing-label">STANDARD SUBSCRIPTION</span>
+            <h3 id="full-price-title">LeadKux Full</h3>
+            <p class="pricing-amount">€149 <span>/ month / business</span></p>
+            <p class="pricing-description">One business. One Windows installation. The complete existing product feature set.</p>
+            <ul class="pricing-features">
+              <li>Lead intake and automated follow-up</li>
+              <li>Reply detection, human handoff and outcome tracking</li>
+              <li>Windows Control Center and guided onboarding</li>
+              <li>Diagnostics, backup and recovery</li>
+              <li>Software updates during your subscription</li>
+            </ul>
+            <p class="pricing-scope">Usage limits, support scope and integration requirements
+              are agreed in writing before activation.</p>
+            <a class="button button-secondary" href="#contact">Discuss your setup <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+
+        <div class="pricing-details">
+          <p><strong>Optional assisted setup: €199 one-time.</strong>
+            Configuration and connection of one supported lead source, subject to an agreed scope.
+            No assisted-setup fee for self-service setup.</p>
+          <p>Prices are in EUR, excluding applicable taxes. External email or messaging
+            provider charges and custom integrations are separate. Any paid setup is agreed
+            separately before work starts.</p>
+          <p class="pricing-evidence">Customer ROI and conversion improvements have not yet been
+            validated in a live customer pilot. No revenue or performance outcome is guaranteed.</p>
         </div>
       </section>
 
