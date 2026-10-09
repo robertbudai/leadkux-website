@@ -3615,3 +3615,12 @@ html {
     gap: 32px;
   }
 }
+/* Real product screenshots */
+.product-screenshot { min-width: 0; width: 100%; margin: 0 auto 44px; }
+.product-screenshot-hero { grid-column: 1 / -1; max-width: 1200px; margin-bottom: 0; }
+.product-screenshot-onboarding { max-width: 1100px; }
+.product-screenshot h3 { margin: 0 0 18px; color: var(--text); font-size: 24px; }
+.product-screenshot a { display: block; border-radius: 14px; }
+.product-screenshot a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+.product-screenshot img { display: block; width: 100%; height: auto; border: 1px solid var(--line-strong); border-radius: 14px; cursor: zoom-in; }
+.product-screenshot figcaption { margin-top: 12px; color: var(--muted-strong); font-size: 14px; line-height: 1.6; }

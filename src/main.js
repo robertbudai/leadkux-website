@@ -173,6 +173,12 @@ document.querySelector('#app').innerHTML = `
             </div>
 
           </div>
+      <figure class="product-screenshot product-screenshot-hero">
+          <a href="/images/leadkux-leads-redacted.png" target="_blank" rel="noopener" aria-label="Open lead management screenshot in a new tab">
+            <img src="/images/leadkux-leads-redacted.png" alt="LeadKux Control Center lead list with test records and the email address concealed" loading="lazy" />
+          </a>
+          <figcaption>LeadKux Control Center - test data shown. Email address concealed. Click to enlarge.</figcaption>
+        </figure>
       </section>
 
       <section class="product-strip section-border">
@@ -306,6 +312,14 @@ document.querySelector('#app').innerHTML = `
             diagnostics into one product surface.
           </p>
         </div>
+
+        <figure class="product-screenshot product-screenshot-onboarding">
+          <h3>Guided onboarding</h3>
+          <a href="/images/leadkux-onboarding.png" target="_blank" rel="noopener" aria-label="Open guided onboarding screenshot in a new tab">
+            <img src="/images/leadkux-onboarding.png" alt="LeadKux readiness checks and the guided setup wizard in a local test environment" loading="lazy" />
+          </a>
+          <figcaption>Readiness checks and guided setup in a local test environment. Click to enlarge.</figcaption>
+        </figure>
 
         <div class="capability-grid">
 
