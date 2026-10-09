@@ -408,7 +408,7 @@ document.querySelector('#app').innerHTML = `
             <span class="pricing-label">STANDARD SUBSCRIPTION</span>
             <h3 id="full-price-title">LeadKux Full</h3>
             <p class="pricing-amount">€149 <span>/ month / business</span></p>
-            <p class="pricing-description">One business. One Windows installation. The complete existing product feature set.</p>
+            <p class="pricing-description">One business. One installation. Windows 10/11 (64-bit) required. The complete existing product feature set.</p>
             <ul class="pricing-features">
               <li>Lead intake and automated follow-up</li>
               <li>Reply detection, human handoff and outcome tracking</li>
