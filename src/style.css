@@ -3624,3 +3624,16 @@ html {
 .product-screenshot a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
 .product-screenshot img { display: block; width: 100%; height: auto; border: 1px solid var(--line-strong); border-radius: 14px; cursor: zoom-in; }
 .product-screenshot figcaption { margin-top: 12px; color: var(--muted-strong); font-size: 14px; line-height: 1.6; }
+/* Footer additions: navigation, founder and document status */
+.site-footer { align-items: flex-start; flex-wrap: wrap; }
+.footer-brand { gap: 9px; }
+.footer-founder { color: var(--muted); font-size: 12px; }
+.footer-brand a, .footer-links a { color: var(--muted); text-decoration: none; font-size: 12px; }
+.footer-brand a:hover, .footer-links a:hover { color: var(--accent); }
+.footer-links { display: flex; flex-wrap: wrap; gap: 12px 20px; max-width: 280px; }
+.footer-legal { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; }
+.footer-legal span { color: #6e8279; }
+@media (max-width: 980px) {
+  .footer-legal { align-items: flex-start; }
+  .footer-links { max-width: none; }
+}

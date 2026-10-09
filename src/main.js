@@ -1243,23 +1243,27 @@ document.querySelector('#app').innerHTML = `
     </main>
 
 
-    <footer class="site-footer">
-
+    <footer class="site-footer" aria-label="Site footer">
       <div class="footer-brand">
         <strong>LEADKUX</strong>
-        <span>Lead recovery & lifecycle automation.</span>
+        <span>Lead recovery &amp; lifecycle automation.</span>
+        <span class="footer-founder">Robert Budai — Founder &amp; Developer</span>
+        <a href="https://www.linkedin.com/in/robert-budai-b94ba2339/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
       </div>
-
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#product">Product</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#pilot">Pilot</a>
+        <a href="/test-drive/">Try now ↗</a>
+      </nav>
       <div class="footer-meta">
-
-        <a href="mailto:contact@leadrecoverycore.com">
-          contact@leadrecoverycore.com
-        </a>
-
+        <a href="mailto:contact@leadrecoverycore.com">contact@leadrecoverycore.com</a>
+        <div class="footer-legal" aria-label="Legal documents status">
+          <span title="Privacy notice is being prepared">Privacy Notice · Coming soon</span>
+          <span title="Terms and license are being prepared">Terms / License · Coming soon</span>
+        </div>
         <span>© 2026 LeadKux</span>
-
       </div>
-
     </footer>
 
   </div>
